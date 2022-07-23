@@ -6,9 +6,11 @@ import {counterActions} from '../store/index'
 
 const Counter = () => {
 
-    const counter = useSelector((state) => state.counter) //берем часть состояния
-    const show = useSelector((state) => state.showCounter) // часть состояния;
+    const counter = useSelector((state) => state.counter.counter) //берем часть состояния //store---> initial
+    const show = useSelector((state) => state.counter.showCounter) // часть состояния;
     const dispatch= useDispatch(); //*
+
+    const authentication = useSelector((state) => state.counter.counter)
 
     const handleIncrement = () => {
         //dispatch({type: 'increment'})

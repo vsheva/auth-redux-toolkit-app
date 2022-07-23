@@ -3,12 +3,13 @@ import {createStore} from "redux";
 
 import {createSlice, configureStore} from "@reduxjs/toolkit";
 
+//slice #1
  const counterSlice = createSlice({
     name: "counter",
     initialState: {counter:0, showCounter:true},
     reducers:{
         increment(state, action) {
-            state.counter++;
+            state.counter++; //mutate
         },
         decrement(state, action) {
             state.counter--;
@@ -23,27 +24,52 @@ import {createSlice, configureStore} from "@reduxjs/toolkit";
     }
 })
 
-
-
-const store= configureStore({ // configuration object //2
-    reducer: counterSlice.reducer,
+//slice #2
+const authSlice = createSlice ({
+    name:"authentication",
+    initialState:{isAuthenticated:false},
+    reducers:{
+        login(state, action){ state.isAuthenticated = true}, //mutating
+        logout(state, action){ state.isAuthenticated = false},
+    }
 })
 
 
+// + add to Redux store --- configuration object
+const store= configureStore({
+    //reducer: counterSlice.reducer, ++ берем в useSelector --> state.counter + -->(counterSlice.reducer===={counter:0, showCounter:true})-->state.counter.counter or state.counter.showCounter
+    reducer: {counter: counterSlice.reducer, auth: authSlice.reducer}, //counterSlice.reducer - часть Slice сверху,у которой берем reducer и записываем в свойство
+})
 
-/**counterSlice.actions.//--actions {}   //increment, decrement, increase, toggle  - action creators */
+/**
+ counterSlice.actions.increment() --> return action object {type:"some unique identifiers"}   //increment, decrement, increase, toggle  - action creators
+
+ counterSlice.actions. ===>доступ к уникальным идентификаторам и его методу, который при вызове метода() создает action object
+
+ counterActions:
+ increment:(state: {
+   counter:num
+   showCounter: bool
+ });
+ decrement(state:{counter:num showCounter:bool})
+ increase (state , action:{})
+ toggle (state)
+
+ */
+
+
 export const counterActions =counterSlice.actions;
+export const authActions =authSlice.actions;
 
-
-
-/** 2. const store= configureStore({
-    reducer: {counter: counterSlice.reducer}
-})*/
-
-
-//1.const store=createStore(counterSlice.reducer)
 
 export default store;
+
+/**1.
+ const store=createStore(counterSlice.reducer)
+ */
+
+
+
 
 
 //4.
@@ -92,7 +118,6 @@ const counterReducer =(state={counter:0, showCounter:true}, action) => {
 
     return state;
 }
-
 
  //2.
  const store=createStore(counterReducer)
