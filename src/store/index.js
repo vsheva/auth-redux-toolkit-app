@@ -1,6 +1,3 @@
-//import {createReducer} from "@reduxjs/toolkit";
-import { createStore } from 'redux';
-
 import { configureStore } from '@reduxjs/toolkit';
 import counterSlice from './counter';
 import authSlice from './auth';
@@ -11,21 +8,6 @@ const store = configureStore({
   reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }, //counterSlice.reducer - часть Slice сверху,у которой берем reducer и записываем в свойство
 });
 
-/**
- counterSlice.actions.increment() --> return action object {type:"some unique identifiers"}   //increment, decrement, increase, toggle  - action creators
-
- counterSlice.actions. ===>доступ к уникальным идентификаторам и его методу, который при вызове метода() создает action object
-
- counterActions:
- increment:(state: {
-   counter:num
-   showCounter: bool
- });
- decrement(state:{counter:num showCounter:bool})
- increase (state , action:{})
- toggle (state)
-
- */
 
 export default store;
 

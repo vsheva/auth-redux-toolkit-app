@@ -24,3 +24,20 @@ const counterSlice = createSlice({
 export const counterActions = counterSlice.actions;
 
 export default counterSlice; //* берем часть
+
+
+/**
+ counterSlice.actions.increment() --> return action object {type:"some unique identifiers"}   //increment, decrement, increase, toggle  - action creators
+
+ counterSlice.actions. ===>доступ к уникальным идентификаторам и его методу, который при вызове метода() создает action object
+
+ counterActions:
+ increment:(state: {
+   counter:num
+   showCounter: bool
+ });
+ decrement(state:{counter:num showCounter:bool})
+ increase (state , action:{})
+ toggle (state)
+
+ */
