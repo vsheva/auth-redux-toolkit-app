@@ -1,45 +1,15 @@
 //import {createReducer} from "@reduxjs/toolkit";
-import {createStore} from "redux";
+import { createStore } from 'redux';
 
-import {createSlice, configureStore} from "@reduxjs/toolkit";
-
-//slice #1
- const counterSlice = createSlice({
-    name: "counter",
-    initialState: {counter:0, showCounter:true},
-    reducers:{
-        increment(state, action) {
-            state.counter++; //mutate
-        },
-        decrement(state, action) {
-            state.counter--;
-        },
-        increase(state, action) {
-            //state.counter= state.counter+ action.value;
-            state.counter= state.counter+ action.payload;
-        },
-        toggle(state, action) {
-            state.showCounter= !state.showCounter
-        },
-    }
-})
-
-//slice #2
-const authSlice = createSlice ({
-    name:"authentication",
-    initialState:{isAuthenticated:false},
-    reducers:{
-        login(state, action){ state.isAuthenticated = true}, //mutating
-        logout(state, action){ state.isAuthenticated = false},
-    }
-})
-
+import { configureStore } from '@reduxjs/toolkit';
+import counterSlice from './counter';
+import authSlice from './auth';
 
 // + add to Redux store --- configuration object
-const store= configureStore({
-    //reducer: counterSlice.reducer, ++ берем в useSelector --> state.counter + -->(counterSlice.reducer===={counter:0, showCounter:true})-->state.counter.counter or state.counter.showCounter
-    reducer: {counter: counterSlice.reducer, auth: authSlice.reducer}, //counterSlice.reducer - часть Slice сверху,у которой берем reducer и записываем в свойство
-})
+const store = configureStore({
+  //reducer: counterSlice.reducer, ++ берем в useSelector --> state.counter + -->(counterSlice.reducer===={counter:0, showCounter:true})-->state.counter.counter or state.counter.showCounter
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }, //counterSlice.reducer - часть Slice сверху,у которой берем reducer и записываем в свойство
+});
 
 /**
  counterSlice.actions.increment() --> return action object {type:"some unique identifiers"}   //increment, decrement, increase, toggle  - action creators
@@ -57,27 +27,17 @@ const store= configureStore({
 
  */
 
-
-export const counterActions =counterSlice.actions;
-export const authActions =authSlice.actions;
-
-
 export default store;
 
 /**1.
  const store=createStore(counterSlice.reducer)
  */
 
-
-
-
-
 //4.
 /**
 store.dispatch({type: "increment"})
 store.dispatch({type: "decrement"})
  */
-
 
 /**
 
