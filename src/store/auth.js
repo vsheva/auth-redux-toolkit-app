@@ -5,6 +5,7 @@ const authSlice = createSlice({
   name: 'authentication',
   initialState: { isAuthenticated: false },
   reducers: {
+
     login(state, action) {
       state.isAuthenticated = true;
     }, //mutating

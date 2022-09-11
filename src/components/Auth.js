@@ -8,9 +8,11 @@ const Auth = () => {
   //посылать login action   dispatch(action), если кнопка Login была засабмичена
   // --- dispatch
   // --- import autchActions из redux  --> откуда берем login(), т.е. authSlice.actions.login() или autchActions.login() //const counterActions =counterSlice.actions;
+
   const onLoginHandler = event => {
     event.preventDefault();
-    dispatch(authActions.login()); //authSlice.actions.login()
+    dispatch(authActions.login());
+    //dispatch(authSlice.actions.login());
   };
 
   return (

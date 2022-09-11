@@ -3,13 +3,22 @@ import counterSlice from './counter';
 import authSlice from './auth';
 
 // + add to Redux store --- configuration object
+
 const store = configureStore({
-  //reducer: counterSlice.reducer, ++ берем в useSelector --> state.counter + -->(counterSlice.reducer===={counter:0, showCounter:true})-->state.counter.counter or state.counter.showCounter
+
+  //reducer: counterSlice.reducer,    ++ берем в useSelector --> state.counter + -->(counterSlice.reducer===={counter:0, showCounter:true})-->state.counter.counter or state.counter.showCounter
   reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }, //counterSlice.reducer - часть Slice сверху,у которой берем reducer и записываем в свойство
 });
 
 
 export default store;
+
+
+
+
+
+
+
 
 /**1.
  const store=createStore(counterSlice.reducer)
